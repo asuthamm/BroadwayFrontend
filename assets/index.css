@@ -1,0 +1,13 @@
+img {
+    border: 0;
+    width: 300;
+    height: 400;
+
+}
+.showings {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
