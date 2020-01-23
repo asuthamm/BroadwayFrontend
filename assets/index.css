@@ -1,3 +1,11 @@
+.main-Btn {
+    color: blue
+}
+.xcard {
+    border: grey solid 1px;
+    padding: 2rem;
+}
+
 img {
     border: 0;
     width: 300;
@@ -10,4 +18,20 @@ img {
 
 .hide {
     display: none;
+}
+
+.single-details {
+    padding: 20px 30px;
+}
+
+.award-title {
+    padding: 5px 30px;
+}
+
+.review-title {
+    padding: 5px 30px;  
+}
+
+.container {
+    padding: 5px 30px;  
 }

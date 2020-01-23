@@ -1,3 +1,5 @@
+// 1/22 - 5pm after fix in-memory reviews
+
 const mainDiv        = document.querySelector('.main')
 const showingsDiv    = document.querySelector('div.showings')
 const awardsUl       = document.querySelector('.awards')
@@ -84,9 +86,9 @@ function renderEachShow(show) {
  
   renderAwards(show)
 }
-
 // path the # of likes
 function increaseLikes(show, likesDiv) {
+  // console.log(show, show.id)
   show.likes += 1
   // console.log(likesDiv, show.likes)
 
@@ -125,33 +127,18 @@ function renderAwards(show) {
   })
 
   show.comments.forEach((comnt) => {
-    refreshCommentsUl(show, comnt) 
-    console.log(show)
+    refreshCommentsUl(comnt) 
   })
 
   renderCommentForm(show)
 }
 
-function refreshCommentsUl(show, commentObj)  {
-  console.log('=>', commentObj)
+function refreshCommentsUl(commentObj)  {
+  // console.log('=>', commentObj)
   comntLi = document.createElement('li')
   comntLi.innerText = `${commentObj.commnt}`
   commentsUl.append(comntLi)
-
-  comntLi.addEventListener('click', (e) => {
-    // console.log('click', e.target, commentObj.id )
-    fetch(`http://localhost:3000/comments/${commentObj.id}`, {
-      method: "DELETE"
-    })
-    .then(r => r.json())
-    .then(() => {
-      comntLi.remove()
-      show.comments = show.comments.filter(comment => comment !== commentObj)
-    })
-    
-
-
-  })
+  // show.comments.push(commentObj.commnt)
 }
 
 
@@ -191,7 +178,7 @@ function commentPost(show, newComment) {
   .then(r => r.json())
   // .then(console.log)
   .then(commentObj => {
-    refreshCommentsUl(show, commentObj) 
+    refreshCommentsUl(commentObj) 
     show.comments.push(commentObj)
   })
 }

@@ -5,10 +5,8 @@ const singleDiv      = document.querySelector('.single')
 const singleshowDiv  = document.querySelector('.single-details')
 const commentsUl     = document.querySelector('.commnt')
 const formContainer  = document.getElementById('form-container')
-const txtArea        = document.querySelector('#review-content')
 const mainBtn        = document.querySelector('.main-Btn')
 
-// initial fetch
 initFetch()
 
 function initFetch(){
@@ -17,7 +15,6 @@ function initFetch(){
     .then(obj => obj.forEach(renderAllShows))
 }  
 
-// main page to show all image thumbnails
 function renderAllShows(show) {
   singleDiv.classList.add("hide")
   const cardDiv = document.createElement('div')
@@ -30,8 +27,8 @@ function renderAllShows(show) {
   cardDiv.append(image)
   showingsDiv.append(cardDiv)
 
-  // event listeners for each thumbnail 
   cardDiv.addEventListener('click', e => {
+    // console.log('click', show)
     renderEachShow(show)
   })
   cardDiv.addEventListener("mouseover", e => {
@@ -39,7 +36,6 @@ function renderAllShows(show) {
   })
 }
 
-// to render each show details
 function renderEachShow(show) {
   commentsUl.innerHTML = ''
   singleshowDiv.innerHTML = ''
@@ -47,19 +43,19 @@ function renderEachShow(show) {
   showingsDiv.classList.add("hide")
   singleDiv.classList.remove("hide")
 
-  const h1 = document.createElement('h1')
-    h1.className = 'header'
-    h1.innerText = show.title
-  const h3 = document.createElement('h3')
-    h3.className = 'show-type'
-    h3.innerText = show.show_type
-  const oDateDiv = document.createElement('h3')
+  const headerDiv = document.createElement('div')
+    headerDiv.className = 'header'
+    headerDiv.innerText = show.title
+  const showTypeDiv = document.createElement('div')
+    showTypeDiv.className = 'show-type'
+    showTypeDiv.innerText = show.show_type
+  const oDateDiv = document.createElement('div')
     oDateDiv.className = 'o-date'
     oDateDiv.innerText = show.opening_date
-  const perfDiv = document.createElement('h4')
+  const perfDiv = document.createElement('div')
     perfDiv.className = 'performances'
-    perfDiv.innerText = `${show.performances} performances`
-  const likesDiv = document.createElement('h4')
+    perfDiv.innerText = show.performances
+  const likesDiv = document.createElement('div')
     likesDiv.className = 'likes'
     likesDiv.innerText = `${show.likes} Likes`
   const image = document.createElement('img')
@@ -69,24 +65,23 @@ function renderEachShow(show) {
     likeBtn.className = 'like-btn'
     likeBtn.innerText = 'Like <3'
 
-  singleshowDiv.append(h1, h3, oDateDiv, perfDiv, likesDiv, image, likeBtn)
+  singleshowDiv.append(headerDiv, showTypeDiv, oDateDiv, perfDiv, likesDiv, image, likeBtn)
 
-  // event listener for the like button
   likeBtn.addEventListener('click', (e) => {
     increaseLikes(show, likesDiv)
   })
-  
-  // event listener for the 'going back to main' button
+
   mainBtn.addEventListener('click', (e) => {
     singleDiv.classList.add("hide")
     showingsDiv.classList.remove("hide")
   })
  
   renderAwards(show)
+
 }
 
-// path the # of likes
 function increaseLikes(show, likesDiv) {
+  // console.log(show, show.id)
   show.likes += 1
   // console.log(likesDiv, show.likes)
 
@@ -125,34 +120,19 @@ function renderAwards(show) {
   })
 
   show.comments.forEach((comnt) => {
-    refreshCommentsUl(show, comnt) 
-    console.log(show)
+    refreshCommentsUl(comnt) 
   })
 
   renderCommentForm(show)
 }
 
-function refreshCommentsUl(show, commentObj)  {
-  console.log('=>', commentObj)
+function refreshCommentsUl(commentObj)  {
+  // console.log('=>', commentObj)
   comntLi = document.createElement('li')
   comntLi.innerText = `${commentObj.commnt}`
   commentsUl.append(comntLi)
-
-  comntLi.addEventListener('click', (e) => {
-    // console.log('click', e.target, commentObj.id )
-    fetch(`http://localhost:3000/comments/${commentObj.id}`, {
-      method: "DELETE"
-    })
-    .then(r => r.json())
-    .then(() => {
-      comntLi.remove()
-      show.comments = show.comments.filter(comment => comment !== commentObj)
-    })
-    
-
-
-  })
 }
+
 
 
 function renderCommentForm(show){
@@ -165,12 +145,13 @@ function renderCommentForm(show){
   <input type="submit" class="btn btn-primary"></input>
 </div>`
 
+
   formContainer.append(newReviewForm)
 
   newReviewForm.addEventListener("submit", (e) => {
     e.preventDefault()
     let newComment = e.target["review-content"].value
-    // console.log(show.reviews)
+    // console.log(newComment)
     commentPost(show, newComment)
   })
 
@@ -190,10 +171,9 @@ function commentPost(show, newComment) {
   })
   .then(r => r.json())
   // .then(console.log)
-  .then(commentObj => {
-    refreshCommentsUl(show, commentObj) 
-    show.comments.push(commentObj)
-  })
+  .then(commentObj => 
+    refreshCommentsUl(commentObj) 
+  )
 }
 
 

@@ -1,3 +1,4 @@
+//8pm, fixed the in-memory li issue
 const mainDiv        = document.querySelector('.main')
 const showingsDiv    = document.querySelector('div.showings')
 const awardsUl       = document.querySelector('.awards')
@@ -69,6 +70,7 @@ function renderEachShow(show) {
     likeBtn.className = 'like-btn'
     likeBtn.innerText = 'Like <3'
 
+
   singleshowDiv.append(h1, h3, oDateDiv, perfDiv, likesDiv, image, likeBtn)
 
   // event listener for the like button
@@ -84,9 +86,9 @@ function renderEachShow(show) {
  
   renderAwards(show)
 }
-
 // path the # of likes
 function increaseLikes(show, likesDiv) {
+  // console.log(show, show.id)
   show.likes += 1
   // console.log(likesDiv, show.likes)
 
