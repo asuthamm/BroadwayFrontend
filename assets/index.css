@@ -1,37 +1,47 @@
 .main-Btn {
-    color: blue
+  color: blue;
+  font-size: 12px;
+  padding: 0px 16px;
+  border-radius: 20px;
 }
 .xcard {
-    border: grey solid 1px;
-    padding: 2rem;
+  border: grey solid 1px;
+  margin: 1px;
+  padding: 2rem;
 }
 
 img {
-    border: 0;
-    width: 300;
-    height: 400;
-
+  border: 0;
+  width: 300;
+  height: 400;
 }
-.showings {
-    display: flex;
+.thumbnail {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
+.single {
+  /* display: flex; */
+  flex-flow: row wrap;
+  justify-content: center;
+}
 .single-details {
-    padding: 20px 30px;
+  padding: 20px 30px;
 }
 
 .award-title {
-    padding: 5px 30px;
+  padding: 5px 30px;
 }
 
 .review-title {
-    padding: 5px 30px;  
+  padding: 5px 30px;
 }
 
 .container {
-    padding: 5px 30px;  
+  padding: 5px 30px;
 }
