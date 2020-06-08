@@ -14,7 +14,8 @@ initFetch();
 function initFetch() {
   fetch("http://localhost:3000/shows")
     .then((res) => res.json())
-    .then((obj) => obj.forEach(renderThumbnail));
+    // .then(console.log);
+  .then((obj) => obj.forEach(renderThumbnail));
 }
 
 // main page to show broadway thumbnails
@@ -49,7 +50,7 @@ function renderShowDetails(show) {
   singleshowDiv.classList.remove("hide");
 
   const h1 = document.createElement("h1");
-  h1.className = "header";
+  h1.className = "title";
   h1.innerText = show.title;
   const bttn = document.createElement("button");
   bttn.innerText = "Name";
@@ -69,7 +70,7 @@ function renderShowDetails(show) {
   image.src = show.image;
   image.alt = show.title;
   const likeBtn = document.createElement("button");
-  likeBtn.className = "like-btn";
+  likeBtn.classList.add("btn", "center");
   likeBtn.innerText = "Like <3";
 
   singleshowDiv.append(
@@ -78,8 +79,9 @@ function renderShowDetails(show) {
     oDateDiv,
     perfDiv,
     likesDiv,
-    image,
-    likeBtn
+    likeBtn,
+    image
+    // likeBtn
     // bttn
   );
 
@@ -103,6 +105,8 @@ function renderShowDetails(show) {
   //     });
   // });
   // event listener for the like button
+
+  // singleDiv.append(likeBtn);
   likeBtn.addEventListener("click", (e) => {
     increaseLikes(show, likesDiv);
   });

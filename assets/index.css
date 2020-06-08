@@ -1,8 +1,10 @@
 .main-Btn {
   color: blue;
+  float:right;
   font-size: 12px;
+  line-height: 16px;
   padding: 0px 16px;
-  border-radius: 20px;
+  border-radius: 8px;
 }
 .xcard {
   border: grey solid 1px;
@@ -11,6 +13,7 @@
 }
 
 img {
+  float: right;
   border: 0;
   width: 300;
   height: 400;
@@ -24,24 +27,65 @@ img {
 .hide {
   display: none;
 }
-
+.btn {
+  color: blue;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+#review-content {
+  margin-left:10px;
+  border-radius: 5px;
+}
+.main {
+  background-color:#f4f4f4;
+}
 .single {
-  /* display: flex; */
-  flex-flow: row wrap;
+  width:80%;
+  margin:auto;
   justify-content: center;
 }
 .single-details {
-  padding: 20px 30px;
+  padding: 5px 30px;
+  text-align: center;
 }
-
+.single-others {
+  color: rgb(193, 17, 17);
+}
 .award-title {
   padding: 5px 30px;
 }
-
+.likes {
+  margin-bottom: 15px;
+}
 .review-title {
-  padding: 5px 30px;
+  padding: 0px 30px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.item {
+  /* display:block; */
+  width: 100%;
+  margin:auto;
+  /* text-align: center; */
+}
+.container {
+  padding: 5px 5px;
 }
 
-.container {
-  padding: 5px 30px;
+h3 {
+  margin: 0;
+}
+h4 {
+  margin: 0;
+}
+li {
+  color:rgb(16, 16, 31);
+}
+.center {
+  margin: 0;
+  position: absolute;
+
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
