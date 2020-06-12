@@ -12,10 +12,10 @@ const mainBtn = document.querySelector(".main-Btn");
 initFetch();
 
 function initFetch() {
-  fetch("http://localhost:3000/shows")
+  fetch("https://bway-api.herokuapp.com/shows")
     .then((res) => res.json())
     // .then(console.log);
-  .then((obj) => obj.forEach(renderThumbnail));
+    .then((obj) => obj.forEach(renderThumbnail));
 }
 
 // main page to show broadway thumbnails
