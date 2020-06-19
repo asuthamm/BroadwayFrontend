@@ -12,7 +12,8 @@ const mainBtn = document.querySelector(".main-Btn");
 initFetch();
 
 function initFetch() {
-  fetch("https://bway-api.herokuapp.com/shows")
+  fetch("http://localhost:3000/shows")
+    // fetch("https://bway-api.herokuapp.com/shows")
     .then((res) => res.json())
     // .then(console.log);
     .then((obj) => obj.forEach(renderThumbnail));
@@ -126,8 +127,8 @@ function increaseLikes(show, likesDiv) {
   show.likes += 1;
   // console.log(likesDiv, show.likes)
 
-  // console.log(`http://localhost:3000/shows/${show.id}`)
   fetch(`http://localhost:3000/shows/${show.id}`, {
+    // fetch(`https://bway-api.herokuapp.com/shows/${show.id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -177,6 +178,7 @@ function refreshCommentsUl(show, commentObj) {
   comntLi.addEventListener("click", (e) => {
     // console.log('click', e.target, commentObj.id )
     fetch(`http://localhost:3000/comments/${commentObj.id}`, {
+      // fetch(`https://bway-api.herokuapp.com/comments/${commentObj.id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
@@ -213,6 +215,7 @@ function renderCommentForm(show) {
 function commentPost(show, newComment) {
   // console.log(show.id, newComment)
   fetch("http://localhost:3000/comments", {
+    // fetch("https://bway-api.herokuapp.com/comments", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -227,5 +230,6 @@ function commentPost(show, newComment) {
     .then((commentObj) => {
       refreshCommentsUl(show, commentObj);
       show.comments.push(commentObj);
+      formContainer.innerHTML = "";
     });
 }
